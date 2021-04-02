@@ -35,7 +35,7 @@ LinkedList::~LinkedList() {                                 // Loops through the
 
 ////////// MUTATOR FUNCTIONS (SETTERS) //////////
 
-void LinkedList::addToHead(const dataType data) {                 // Adds a new node to the head of the list.
+void LinkedList::addToHead(const dataType data) {           // Adds a new node to the head of the list.
     if (length == 0) {                                      // Checks to see if the list is empty, if empty adds the first node.
         head = new Node( data );
         tail = head;
@@ -52,7 +52,7 @@ void LinkedList::addToHead(const dataType data) {                 // Adds a new 
     }
 }
 
-void LinkedList::addToTail(const dataType data) {                 // Adds a new node to the tail of the list.
+void LinkedList::addToTail(const dataType data) {           // Adds a new node to the tail of the list.
     if (length == 0) {                                      // Checks to see if the list is empty, if empty adds the first node.
         head = new Node( data );
         tail = head;
@@ -69,7 +69,7 @@ void LinkedList::addToTail(const dataType data) {                 // Adds a new 
     }
 }
 
-void LinkedList::addToCurrent(const dataType data) {              // Inserts a new node between current and its previous.
+void LinkedList::addToCurrent(const dataType data) {        // Inserts a new node between current and its previous.
     if (length == 0) {                                      // Checks to see if the list is empty, if empty adds the first node.
         head = new Node( data );
         tail = head;
