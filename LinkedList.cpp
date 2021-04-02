@@ -26,6 +26,7 @@ LinkedList::LinkedList(dataType& data) {                    // Creat a list with
 }
 
 ////////// DESTRUCTOR //////////
+
 LinkedList::~LinkedList() {                                 // Loops through the list deleting the head until all nodes are deleted.
     while (head != NULL)
         removeFromHead();
@@ -33,6 +34,7 @@ LinkedList::~LinkedList() {                                 // Loops through the
 }
 
 ////////// MUTATOR FUNCTIONS (SETTERS) //////////
+
 void LinkedList::addToHead(dataType data) {                 // Adds a new node to the head of the list.
     if (length == 0) {                                      // Checks to see if the list is empty, if empty adds the first node.
         head = new Node( data );
@@ -90,7 +92,7 @@ void LinkedList::addToCurrent(dataType data) {              // Inserts a new nod
 
 LinkedList::dataType LinkedList::removeFromHead() {         // Removes the head node from the linked list.
 	dataType temp = head->getData();                        // Creates a temp node on the stack to store the head node data.
-	if (length == 0) {                                      // Returns null if the list is empty. 
+	if (length == 0) {                                      // Returns temp if the list is empty. 
         return temp;
 	} else if (length == 1) {                               // Removes the head and sets all pointers to NULL if it's the only node.
         delete head;
@@ -111,7 +113,7 @@ LinkedList::dataType LinkedList::removeFromHead() {         // Removes the head 
 
 LinkedList::dataType LinkedList::removeFromTail() {         // Removes the tail node from the linked list.
     dataType temp = tail->getData();                        // Creates a temp node on the stack to store the tail node data.
-	if (length == 0) {                                      // Returns null if the list is empty. 
+	if (length == 0) {                                      // Returns temp if the list is empty. 
         return temp;
     }else if (length == 1) {                                // Removes the tail and sets all pointers to NULL if it's the only node.
         delete tail;
@@ -131,7 +133,9 @@ LinkedList::dataType LinkedList::removeFromTail() {         // Removes the tail 
 
 LinkedList::dataType LinkedList::removeFromCurrent() {      // Removes the node current is pointing to.
     dataType temp = current->getData();                     // Creates a TEMP data storage for the data type.
-	if (current == head) {                                  // If the target is the head, invokes removeFromHead().
+	if (length == 0) {                                      // Returns temp if the list is empty. 
+        return temp;
+    } else if (current == head) {                           // If the target is the head, invokes removeFromHead().
         removeFromHead();
     }else if (current == tail) {                            // If the target is the tail, invokes removeFromTail().
         removeFromTail();
@@ -149,15 +153,13 @@ LinkedList::dataType LinkedList::removeFromCurrent() {      // Removes the node 
     return temp;                                            // Returns the data from the deleted node.
 }
 
-void LinkedList::remove(string target) {
+void LinkedList::remove(string target) {                    // Removes target node based on strored data parameters.
 	start();
-	while (target != getCurrent().get_id())	                // Checks target against train ID. Note, snake_case is from Train.
-		forward();
-	if (target == getCurrent().get_id()) {
-		removeFromCurrent();
-	} else {
-		cout << " The train you are looking for doesn't exist " << endl;
-	}
+	while (target != getCurrent().get_id())	                // Checks target against train ID. Note, snake_case is from Train class.
+		forward();                                          // Calls the forward() function to increment the pointer to the next node.
+	if (target == getCurrent().get_id()) {                  
+		removeFromCurrent();                                // Calls the removeFromCurrent() function if the IDs match.
+	} 
 }	
 
 void LinkedList::removeEarlier(int hour, int minute) {
@@ -174,14 +176,15 @@ void LinkedList::removeEarlier(int hour, int minute) {
     }; 
 }	
 
-////////// GETTERS //////////
+////////// ACCESSOR FUNCTIONS (GETTERS) /////////
+
 LinkedList::dataType LinkedList::getCurrent() {             // Retrieves the data from the current node.
     return current->getData();
 }	
 
 void LinkedList::start() {                                  // Moves the current pointer to head
     if (length == 0) {
-        cout << "There is no head, there is no tail, there's nothing, nothing here at all... " << endl;
+        cout << "Error - No Nodes Exist" << endl;           // Sends error message if there are no nodes in the list.
     } else {
         current = head;
     }
@@ -189,7 +192,7 @@ void LinkedList::start() {                                  // Moves the current
 
 void LinkedList::end() {                                    // Moves the current pointer to tail
     if (length == 0) {
-        cout << "There is no tail, there is no head, there's nothing, nothing here at all... " << endl;
+        cout << "Error - No Nodes Exist" << endl;           // Sends error message if there are no nodes in the list.
     } else {
         current = tail;
     }
@@ -197,7 +200,7 @@ void LinkedList::end() {                                    // Moves the current
 
 void LinkedList::forward() {                                // Moves the current pointer one node to the right
     if (length == 0) {
-        cout << "There is no forward, there is no back, there's nothing, nothing here at all... " << endl;
+        cout << "Error - No Nodes Exist" << endl;           // Sends error message if there are no nodes in the list.
     } else {
         current = current->getNext();
     }
@@ -205,42 +208,42 @@ void LinkedList::forward() {                                // Moves the current
 
 void LinkedList::back() {                                   // moves current one node to the left.
     if (length == 0) {
-        cout << "There is no back, there is no forward, there's nothing, nothing here at all... " << endl;
+        cout << "Error - No Nodes Exist" << endl;           // Sends error message if there are no nodes in the list.
     } else {
         current = current->getPrevious();
     }
 }
 
-const int LinkedList::getSize() const {
+const int LinkedList::getSize() const {                     // Returns the length of the current list. 
     return length;
 }
 
-double LinkedList::calcTotalWeight() {
-	current = head;
-    double sum = 0;
-	for (int i=0; i < length; i++) {
-		sum = sum + getCurrent().get_weight();
+double LinkedList::calcTotalWeight() {                      // Calculates the total weight of all trains in a list. 
+	current = head;                                         // Moves the current pointer to the head of the list.
+    double sum = 0;                                         
+	for (int i=0; i < length; i++) {                        // For loop set to the length of the list.
+		sum = sum + getCurrent().get_weight();              // Summs the weights of each train on each iteration. 
         forward();
     } 
     return sum;
 }
 
-void LinkedList::operator+= (LinkedList& list2) {
-    list2.start();
-	int size = list2.getSize();
-	for (int i=0; i < size; i++) {
-		addToTail(list2.getCurrent());
-		list2.forward();
+void LinkedList::operator+= (LinkedList& list2) {           // Overloads the += operator to concatenate two lists into one.
+    list2.start();                                          // Moves the current pointer to the head of the list to be added.
+	int size = list2.getSize();                             // Stores the size of the list to be added in a local variable.
+	for (int i=0; i < size; i++) {                          // For loop set to the size of the list.
+		addToTail(list2.getCurrent());                      // Calls the addToTail function to add the data object one at a time.
+		list2.forward();                                    // Moves the current pointer to the next node in the list to be added.
 	}
 }
 
 
-ostream& operator << (ostream& output, LinkedList& list) {
-    list.start();
-	int size = list.getSize();
-	for (int i=0; i < size; i++) {
-		output << list.getCurrent();
-		list.forward();
+ostream& operator << (ostream& output, LinkedList& list) {  // Overloads the Out Stream << operator to output the entire list.
+    list.start();                                           // Moves the current pointer to the head of the list to be output.
+	int size = list.getSize();                              // Stores the size of the list to be output in a local variable.
+	for (int i=0; i < size; i++) {                          // For loop set to the size of the list.
+		output << list.getCurrent();                        // Outputs the current nodes data on each iteration. 
+		list.forward();                                     // Moves to the next node in the list ready to output the data.
     }
-	return output;
+	return output;                                          // Returns the output. 
 }
