@@ -4,7 +4,7 @@
 //  Author: Mick Wiedermann                                                                    //
 //  Course: SENG1120 | Assignment 1                                                            //
 //  Date  : 2021-04-01                                                                         //
-//  Program Description: Header file for the doubly linked list Object.      				   //
+//  Program Description: Header file for the doubly linked list Object.      			       //
 //***********************************************************************************************
 
 #ifndef LINKEDLIST_H
@@ -26,9 +26,10 @@ class LinkedList
 		// Postcondition: A new instance of am empty linked list is created
 		    // All pointers set to NUll, list length set to 0.
 		LinkedList();
-        // Precondition: None
-        // Postcondition: A new instance of a linked list is created with a single node.
-            // All pointers set to the new node, list size incremented to 1.
+
+		// Precondition: None
+		// Postcondition: A new instance of a linked list is created with a single node.
+        	// All pointers set to the new node, list size incremented to 1.
 		LinkedList(dataType& data);
 
 		////////// DESTRUCTOR ///////////////////////////
@@ -40,7 +41,7 @@ class LinkedList
 
 		////////// MUTATOR FUNCTIONS (SETTERS) //////////
 
-        // Precondition: None, if no nodes exist this will create the first node.
+		// Precondition: None, if no nodes exist this will create the first node.
         // Postcondition: Adds a node to the head of the list and updates relevant pointers.
 			// New heads previous to NULL, next to the existing node, and the existing nodes previous to the new head.
 		void addToHead(const dataType data);        
