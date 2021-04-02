@@ -44,34 +44,36 @@ class Node
         // Postcondition: Sets the current nodes next pointer to the location passed. 
         void setNext (Node* nextLink);   
 
-        // Precondition: 
-        // Postcondition:           
+        // Precondition: A node must exist. 
+        // Postcondition: Sets the current nodes previous pointer to the location passed.           
         void setPrevious (Node* previousLink);  
 
         ////////// ACCESSOR FUNCTIONS (GETTERS) /////////
 
-        // Precondition:
-        // Postcondition:
+        // Precondition: A node containing data must exist.
+        // Postcondition: The data from the target node is returned.  
         const dataType getData() const;
 
-        // Precondition:
-        // Postcondition:
+        // Precondition: More than one node must exist.  
+        // Postcondition: Returns the location of the next CONST node.
         const Node* getNext() const;
-        // Precondition:
-        // Postcondition:                 
+
+        // Precondition: More than one node must exist. 
+        // Postcondition: Returns the location of the next node.                
         Node* getNext(); 
 
-        // Precondition:
-        // Postcondition:
-        const Node* getPrevious() const;             
-        // Precondition:
-        // Postcondition:
+        // Precondition: More than one node must exist.  
+        // Postcondition: Returns the location of the previous CONST node.
+        const Node* getPrevious() const; 
+
+        // Precondition: More than one node must exist. 
+        // Postcondition: Returns the location of the previous node.
         Node* getPrevious();                           
 
     private:
-        dataType data;                              // Private member variable that stores the data types data.
-        Node* next;                                 // Private member variable that points to the next node.   
-        Node* previous;                             // Private member variable that points to the next node.
+        dataType data;                       // Private member variable that stores the data types data.
+        Node* next;                          // Private member variable that points to the next node.   
+        Node* previous;                      // Private member variable that points to the next node.
 
 };
 
