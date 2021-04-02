@@ -1,7 +1,7 @@
 //LinkedListDemo - Main Program
 /******************************/							//**********************************************//
-//Author: Alex Mendes										//	SENG1120 | Assignment 1			 			//
-//Course: SENG1120											//	Implemented by: Mick Wiedermann c3315267	//
+//Author: Alex Mendes										//	SENG1120 | Assignment 1	| LinkedList class	//
+//Course: SENG1120											//	implemented by: Mick Wiedermann c3315267	//
 //Date  : 2021-03-11										//**********************************************//
 //Updated by: Dan Bell
 //Program Description: This program demonstrates the basic functionality of a linked list that stores trains circulation data.
