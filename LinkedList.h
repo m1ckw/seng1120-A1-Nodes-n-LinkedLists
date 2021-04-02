@@ -88,7 +88,7 @@ class LinkedList
 
 		// Precondition: A node exists and contains data.
 		// Postcondition: Returns the data from the node that the current pointer is set to. 
-        dataType getCurrent();
+		dataType getCurrent();
 
 		// Precondition: A list with more than one node exists.
 		// Postcondition: The current pointer will be set to the head node. 
