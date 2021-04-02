@@ -2,7 +2,7 @@
 //*********************************************************************************************//
 //  Class Node (implementation)                                                                //
 //  Author: Mick Wiedermann                                                                    //
-//  Course: SENG1120                                                                           //
+//  Course: SENG1120 | Assignment 1                                                            //
 //  Date  : 2021-04-01                                                                         //
 //  Program Description: Implementation file for the Node Object.                              //
 //***********************************************************************************************

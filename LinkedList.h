@@ -2,7 +2,7 @@
 //*********************************************************************************************//
 //  Class LinkedList (header)                                                                  //
 //  Author: Mick Wiedermann                                                                    //
-//  Course: SENG1120                                                                           //
+//  Course: SENG1120 | Assignment 1                                                            //
 //  Date  : 2021-04-01                                                                         //
 //  Program Description: Header file for the linked list Object.      						   //
 //***********************************************************************************************
@@ -108,10 +108,10 @@ class LinkedList
 		void operator += (LinkedList& list2);
 	
 	private:
-		Node* head;                                 // Variable that points to the head node
-		Node* tail;                                 // Variable that points to the tail node
-		Node* current;                              // Variable that points to the current node
-		int length;                           		// Variable to track the length of the list.
+		Node* head;                                 // Private member variable that points to the head node
+		Node* tail;                                 // Private member variable that points to the tail node
+		Node* current;                              // Private member variable that points to the current node
+		int length;                           		// Private member variable to track the length of the list.
 };
 /////////// MEMBER OPERATOR OVERLOAD ////////////
 // Precondition:
