@@ -4,7 +4,7 @@
 //  Author: Mick Wiedermann                                                                    //
 //  Course: SENG1120 | Assignment 1                                                            //
 //  Date  : 2021-04-01                                                                         //
-//  Program Description: Implementation file for the Linked List Object.                       //
+//  Program Description: Implementation file for the doubly Linked List Object.                //
 //***********************************************************************************************
 
 #include <iostream>
@@ -12,13 +12,13 @@
 
 
 ///// CONSTRUCTORS /////
-LinkedList::LinkedList() {                                  // Creates an empty list setting all pointers to NULL
+LinkedList::LinkedList() {                                  // Creates an empty list setting all pointers to NULL.
     head = NULL;
     tail = NULL;
     current = NULL;
     length = 0;
 }
-LinkedList::LinkedList(dataType& data) {                    // Creat a list with its first node
+LinkedList::LinkedList(dataType& data) {                    // Creat a list with its first node.
     head = new Node( data );
     tail = head;
     current = tail;
@@ -46,7 +46,7 @@ void LinkedList::addToHead(dataType data) {                 // Adds a new node t
         head->setPrevious( headInsert );                    // Sets the old heads previous pointer from NULL to the new head.
         headInsert->setNext( head );                        // Sets the new heads next pointer to the old head.
         head = headInsert;                                  // Sets the head pointer to the new head.
-        head->setPrevious(NULL);                            // Sets the head previous to NULL
+        head->setPrevious(NULL);                            // Sets the head previous to NULL.
         length++;                                           // Increments the length of the list by 1
         headInsert = NULL;                                  // Sets the temporary pointer to null.
     }
@@ -63,7 +63,7 @@ void LinkedList::addToTail(dataType data) {                 // Adds a new node t
         tail->setNext( tailInsert );                        // Sets the old tails next pointer from NULL to the new tail.
         tailInsert->setPrevious( tail );                    // Sets the new tails previous pointer to the old tail.
         tail = tailInsert;                                  // Sets the tail pointer to the new tail.
-        tail->setNext(NULL);                                // Sets the tails next to NULL
+        tail->setNext(NULL);                                // Sets the tails next to NULL.
         length++;                                           // Increments the length of the list by 1
         tailInsert = NULL;                                  // Sets the temporary pointer to null.
     }
@@ -140,8 +140,7 @@ LinkedList::dataType LinkedList::removeFromCurrent() {      // Removes the node 
     }else if (current == tail) {                            // If the target is the tail, invokes removeFromTail().
         removeFromTail();
     } else {
-        Node* targetDelete;                                 // Creates a TEMP node pointer.
-		targetDelete = current;                             // Sets the TEMP to current, the deletion target.
+        Node* targetDelete = current;                       // Creates a TEMP node pointer set to current.
 		current = current->getPrevious();                   // Moves current to the previous node.
 		current->setNext(targetDelete->getNext());          // Sets current next to skip deletion target.
 		current = current->getNext();                       // Moves current to the node past the deletion target.
@@ -170,9 +169,14 @@ void LinkedList::removeEarlier(int hour, int minute) {
             Node* nextTarget = current->getNext();          // Creates a TEMP node pointer to track deletion targets.
             removeFromCurrent();                            // Calls the removeFromCurrent to delete target and adjust pointers
             current = nextTarget;                           // Readjusts current pointer to next node after target deletion.
-        } else { 
-            forward();                                      // If train hour is > 12 moves current to next node. 
-        } 
+        } else if (hour == getCurrent().get_time_hour()     // Deals with a matching hour, removes node if minutes are earlier.
+            && minute > getCurrent().get_time_min()) { 
+            Node* nextTarget = current->getNext();          
+            removeFromCurrent();                            
+            current = nextTarget;
+        } else {
+            forward();                                      // If train hour is > 12 moves current to next node.     
+        }
     }; 
 }	
 
@@ -182,7 +186,7 @@ LinkedList::dataType LinkedList::getCurrent() {             // Retrieves the dat
     return current->getData();
 }	
 
-void LinkedList::start() {                                  // Moves the current pointer to head
+void LinkedList::start() {                                  // Moves the current pointer to head.
     if (length == 0) {
         cout << "Error - No Nodes Exist" << endl;           // Sends error message if there are no nodes in the list.
     } else {
@@ -190,7 +194,7 @@ void LinkedList::start() {                                  // Moves the current
     }
 }
 
-void LinkedList::end() {                                    // Moves the current pointer to tail
+void LinkedList::end() {                                    // Moves the current pointer to tail.
     if (length == 0) {
         cout << "Error - No Nodes Exist" << endl;           // Sends error message if there are no nodes in the list.
     } else {
@@ -198,7 +202,7 @@ void LinkedList::end() {                                    // Moves the current
     }
 }
 
-void LinkedList::forward() {                                // Moves the current pointer one node to the right
+void LinkedList::forward() {                                // Moves the current pointer one node to the right.
     if (length == 0) {
         cout << "Error - No Nodes Exist" << endl;           // Sends error message if there are no nodes in the list.
     } else {
