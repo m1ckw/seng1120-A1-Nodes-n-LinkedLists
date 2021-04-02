@@ -4,7 +4,7 @@
 //  Author: Mick Wiedermann                                                                    //
 //  Course: SENG1120 | Assignment 1                                                            //
 //  Date  : 2021-04-01                                                                         //
-//  Program Description: Header file for the linked list Object.      						   //
+//  Program Description: Header file for the doubly linked list Object.      				   //
 //***********************************************************************************************
 
 #ifndef LINKEDLIST_H
@@ -33,78 +33,89 @@ class LinkedList
 
 		////////// DESTRUCTOR ///////////////////////////
 
-		// Precondition: None.
+		// Precondition: A list item must exist. 
 		// Postcondition: Deletes all nodes in the list.
-		    // Calls the removeFromHead() function in a while loop.
+		    // Calls the removeFromHead() function in a while loop removing each node from the head untill none remain.
 		~LinkedList();
 
 		////////// MUTATOR FUNCTIONS (SETTERS) //////////
 
-        // Precondition:
-        // Postcondition:
-		void addToHead(const dataType data);        // Adds a node to the head of the list and updates relevant pointers.
+        // Precondition: None, if no nodes exist this will create the first node.
+        // Postcondition: Adds a node to the head of the list and updates relevant pointers.
+			// New heads previous to NULL, next to the existing node, and the existing nodes previous to the new head.
+		void addToHead(const dataType data);        
 
-        // Precondition:
-        // Postcondition:
-		void addToTail(const dataType data);        // Adds a node to the tail of the list and updates relevant pointers.
+        // Precondition: None, if no nodes exist this will create the first node.
+        // Postcondition: Adds a node to the tail of the list and updates relevant pointers.
+			// New tails next to NULL, previous to the existing node, and the existing nodes next to the new tail.
+		void addToTail(const dataType data);        
 
-        // Precondition:
-        // Postcondition:
-		void addToCurrent(const dataType data);     // Adds a new node in front of the current pointers position.
+        // Precondition: None, if no nodes exist this will create the first node.
+        // Postcondition: Inserts a new node in front of the current pointers position, to the left.
+			// Updates all relevant pointers of the insert node and the previous and next nodes. 
+		void addToCurrent(const dataType data);     
 
-        // Precondition:
-        // Postcondition:
+        // Precondition: A node must already exist.  
+        // Postcondition: The head node will be deleted and any data contained returned. 
+			// All pointers are updated on the existing node with the previous pointer set to NULL.
+			// If no nodes are left all pointers will be set to NULL. 
 		dataType removeFromHead();
 
-        // Precondition:
-        // Postcondition:
+        // Precondition: A node must already exist. 
+        // Postcondition: The tail node will be deleted and any data contained returned. 
+			// All pointers are updated on the existing node with the next pointer set to NULL.
+			// If no nodes are left all pointers will be set to NULL. 
 		dataType removeFromTail();
 
-        // Precondition:
-        // Postcondition:
+        // Precondition: A node must already exist. 
+        // Postcondition: The current node will be deleted and any data contained returned. 
+			// All pointers are updated on the existing nodes both previous and/or next.
+			// If no nodes are left all pointers will be set to NULL. 
 		dataType removeFromCurrent();
 
-		// Precondition:
-        // Postcondition:
-		void remove(string target);
+		// Precondition: A node must already exist and contain string id data.  
+        // Postcondition: The node containing data matching the string id is removed.
+			// All relavant pointers are updated to maintain the integraty of the doubly linked list.  
+		void remove(string id);
 
-		// Precondition:
-        // Postcondition:
+		// Precondition: A node must already exist and contain int time data. 
+        // Postcondition: The node containing data equating to less than the int time data passed is removed.
+			// All relavant pointers are updated to maintain the integrity of the doubly linked list.  
 		void removeEarlier(int hour, int min);
 		
 		////////// ACCESSOR FUNCTIONS (GETTERS) /////////
 
-        // Precondition:
-        // Postcondition:
+        // Precondition: A node exists and contains data.
+        // Postcondition: Returns the data from the node that the current pointer is set to. 
         dataType getCurrent();
 
-        // Precondition:
-        // Postcondition:
-		void start(); 	                            // moves to current head
+        // Precondition: A list with more than one node exists.
+        // Postcondition: The current pointer will be set to the head node. 
+		void start(); 	                            
 
-        // Precondition:
-        // Postcondition:
-		void end(); 	                            // moves to current tail
+        // Precondition: A list with more than one node exists.
+        // Postcondition: The current pointer will be set to the tail node. 
+		void end(); 	                            
 
-        // Precondition:
-        // Postcondition:
-		void forward();                             // moves current one node to the right
+        // Precondition: A list with more than one node exists.
+        // Postcondition: The current pointer will be moved one node to the right (the next node). 
+		void forward();                             
 
-        // Precondition:
-        // Postcondition:
-		void back(); 	                            // moves current one node to the left
+        // Precondition: A list with more than one node exists.
+        // Postcondition: The current pointer will be moved one node to the left (the previous node). 
+		void back(); 	                            
 
-        // Precondition:
-        // Postcondition:
+        // Precondition: None. 
+        // Postcondition: Returns the length of the list. 
 		const int getSize() const;
 
-	    // Precondition:
-        // Postcondition:			
+	    // Precondition: A node exists and contains data int weight data.
+        // Postcondition: Adds the total weight of all trains contained within the list. 			
 		double calcTotalWeight();
 
 		/////////// MEMBER OPERATOR OVERLOAD ////////////
-		// Precondition:
-        // Postcondition:
+		// Precondition: Two lists must exists.
+        // Postcondition: Concatenates the secondlist to the end of the first list. 
 		void operator += (LinkedList& list2);
 	
 	private:
@@ -114,8 +125,8 @@ class LinkedList
 		int length;                           		// Private member variable to track the length of the list.
 };
 /////////// MEMBER OPERATOR OVERLOAD ////////////
-// Precondition:
-// Postcondition:
+// Precondition: A list containing data exists.
+// Postcondition: Outputs the data from an entire list. 
 ostream& operator << (ostream& output, LinkedList& list);
 
 #endif
