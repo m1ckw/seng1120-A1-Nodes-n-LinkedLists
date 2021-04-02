@@ -72,7 +72,7 @@ class LinkedList
         // Postcondition:
 		void removeEarlier(int hour, int min);
 		
-		////////// ACCESSOT FUNCTIONS (GETTERS) /////////
+		////////// ACCESSOR FUNCTIONS (GETTERS) /////////
 
         // Precondition:
         // Postcondition:

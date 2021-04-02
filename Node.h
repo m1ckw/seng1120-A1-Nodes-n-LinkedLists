@@ -15,23 +15,23 @@
 class Node
 {
     public:
-        ////////// TYPEDEF ////////// 
+        ////////// TYPEDEF ////////////////////////////// 
         typedef Train dataType;
 
-        ////////// CONTRUCTORS //////////
-        // Precondition:
-        // Postcondition:
+        ////////// CONSTRUCTORS /////////////////////////
+        // Precondition: None.
+        // Postcondition: 
         Node();
         // Precondition:
         // Postcondition:
         Node(const dataType& initData, Node* initNext = NULL, Node* initPrevious = NULL);
 		
-        ////////// DESTRUCTOR //////////
+        ////////// DESTRUCTOR ///////////////////////////
         // Precondition:
         // Postcondition:
         ~Node();
 
-        ////////// SETTERS //////////
+        ////////// MUTATOR FUNCTIONS (SETTERS) //////////
         // Precondition:
         // Postcondition:
         void setData(const dataType& newData);  
@@ -44,7 +44,7 @@ class Node
         // Postcondition:           
         void setPrevious (Node* previousLink);  
 
-        ////////// GETTERS //////////
+        ////////// ACCESSOR FUNCTIONS (GETTERS) /////////
         // Precondition:
         // Postcondition:
         const dataType getData() const;
@@ -64,10 +64,9 @@ class Node
         Node* getPrevious();                           
 
     private:
-        ///// PRIVATE MEMBER VARIABLES /////
-        dataType data;
-        Node* next;
-        Node* previous;
+        dataType data;                      // Private member variable that stores the datatypes data.
+        Node* next;                         // Private member variable that points to the next node.   
+        Node* previous;                     // Private member variable that points to the next node.
 
 };
 
