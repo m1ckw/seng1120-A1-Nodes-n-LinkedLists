@@ -10,7 +10,8 @@
 #include <iostream>
 #include "Node.h"
 
-////////// CONSTRUCTORS ////////// 
+////////// CONSTRUCTORS ///////////////////////// 
+
 Node::Node()
 {
 	next = NULL;
@@ -24,14 +25,16 @@ Node::Node(const dataType& initData, Node* initNext, Node* initPrevious)
 	previous = initPrevious;
 }
 
-////////// DECTRUCTOR ////////// 
+////////// DESTRUCTOR /////////////////////////// 
+
 Node::~Node() 
 {
     next = NULL;
     previous = NULL;
 }
 
-////////// SETTERS //////////
+////////// MUTATOR FUNCTIONS (SETTERS) //////////
+
 void Node::setData(const dataType& newData)       
 {
     data = newData;
@@ -46,9 +49,9 @@ void Node::setPrevious (Node* previousLink)
 {
     previous = previousLink;
 }
-
             
-////////// GETTERS //////////
+////////// ACCESSOR FUNCTIONS (GETTERS) /////////
+
 const Node* Node::getPrevious() const             
 {
     return previous;
