@@ -125,8 +125,9 @@ LinkedList::dataType LinkedList::removeFromTail() {         // Removes the tail 
         current = tail;
         tail = current->getPrevious();
         delete current;
-        length--;
+        length--;        
         current = head;
+        tail->setNext(NULL);
     }
 	return temp;
 }
@@ -230,6 +231,39 @@ double LinkedList::calcTotalWeight() {                      // Calculates the to
         forward();
     } 
     return sum;
+}
+
+void LinkedList::order() {
+    current = head;
+    Node* temp = current;
+    int sizeOuter = length;
+    int sizeInner = length;
+    for (int i = 0; i < sizeOuter; i++) {
+        for (int i = 1; i < sizeInner; i++) {
+            cout << "Does it make it to HERE?? " << endl;
+            cout << "i = " << i << " Size = " << sizeInner << endl;
+            if (getCurrent().get_time_hour() < current->getNext()->getData().get_time_hour()) {
+                temp = current;
+                cout << "The winning train is : " << getCurrent().get_id() << endl;
+            } else {
+                temp = current->getNext();
+                cout << "The winning train is : " << current->getNext()->getData().get_id() << endl;
+            }
+            cout << " Next Train: " << current->getNext()->getData().get_id() << endl;
+            if (current->getNext() != NULL) {
+                forward();
+            } else {
+                cout << " Move Current to Start " << endl;
+                
+            }
+            cout << " Inner Loop iteration: " << i + 1 << endl;
+            
+        }
+        cout << " OUTER loop iteration: " << i + 1 << endl;
+        cout << "      The GRAND CHAMPION is: " << temp->getData().get_id() << endl;
+        current = head->getNext();
+        sizeInner--;
+    } 
 }
 
 void LinkedList::operator+= (LinkedList& list2) {           // Overloads the += operator to concatenate two lists into one.
