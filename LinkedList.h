@@ -113,6 +113,10 @@ class LinkedList
 		// Precondition: A node exists and contains data int weight data.
 		// Postcondition: Adds the total weight of all trains contained within the list. 			
 		double calcTotalWeight();
+		
+		// Precondition: A linked list with multipal nodes containg int time data exists.
+		// Postcondition: The linked list will be order based on arrival time from earliest to latest.
+		void order();
 
 		/////////// MEMBER OPERATOR OVERLOAD ////////////
 		// Precondition: Two lists must exists.
