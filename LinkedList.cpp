@@ -233,70 +233,58 @@ double LinkedList::calcTotalWeight() {                      // Calculates the to
     return sum;
 }
 
-void LinkedList::order() {
+void LinkedList::order() {                                  // Orders the list from latest to earliest.
     current = head;
-    Node* temp = current->getNext();
-    Node* sort = head;
-    int sizeOuter = length;
-    int sizeInner = length;
-    for (int i = 1; i < sizeOuter; i++) {
-        for (int i = 1; i < sizeInner; i++) {
-            cout << "i = " << i << " Size = " << sizeInner << endl;
-            cout << " The FIRST Train is " << getCurrent().get_id() << endl;
-            
-            if (current->getNext() != NULL) {
-                cout << " The NEXT Train is: " << current->getNext()->getData().get_id() << endl;
-                cout << " The Title Holder is " << temp->getData().get_id() << endl;
-                if (getCurrent().get_time_hour() > current->getNext()->getData().get_time_hour()) {
+    Node* temp = current;                                   // Creates a temp pointer set to current.
+    Node* sort = head;                                      // Creats a temp pointer set to head. 
+    int size = length;
+    for (int i = 1; i < length; i++) {                      // Outer loop updates the list order each iteration. 
+        for (int i = 1; i < size; i++) {                    // Inner loop finds the train with the latest time each itteration. 
+            if (current->getNext() != NULL) {               // Ensures no segmentation fault.
+                if (getCurrent().get_time_hour() >          // Compares 2 nodes and stores the greater in temp. 
+                    current->getNext()->getData().get_time_hour()) {
                     temp = current;
-                    cout << "The greater train is : " << temp->getData().get_id() << endl;
                 } else {
                     temp = current->getNext();
-                    cout << "The greater train is : " << temp->getData().get_id() << endl;
                 }
-                current = current->getNext();   
+                current = current->getNext();               // Moves the current pointer to the next node before the next loop.
             } else {
-                cout << " THE NEXT TRAIN IS NULL  " << endl;
-                
+                current = current->getNext();  
             }
-            cout << " Inner Loop iteration: " << i << " Completed" << endl;
-            
         }
-        cout << " OUTER loop iteration: " << i << endl;
-        cout << " ------------------- The GRAND CHAMPION is: " << temp->getData().get_id() << endl;
-
-        if (temp == tail) {
-            tail = tail->getPrevious();
+        if (temp == tail) {                                 // Deals with the case of the largest node being the tail.
+            tail = tail->getPrevious();                     // Updates the new tail.
             tail->setNext(NULL);
-            if (temp->getData().get_time_hour() > head->getData().get_time_hour()) {
-                head->setPrevious(temp);
-                temp->setNext(head);
-                head = temp;
-                head->setPrevious(NULL);
-            } else {
-                Node* targetInsert = head->getNext();                       // Creates a TEMP node pointer set to current.
-                head->setNext(temp);
-                temp->setNext(targetInsert);
-                targetInsert->setPrevious(temp);
-                temp->setPrevious(head);
-                targetInsert = NULL;
+             if (temp->getData().get_time_hour() >          // Checks to see if the tail is larger than the current head.
+                 head->getData().get_time_hour()) {
+                 head->setPrevious(temp);                   // Re-organises pointers .
+                 temp->setNext(head);                       // Re-organises pointers.
+                 head = temp;
+                 head->setPrevious(NULL);                   // Re-organises pointers.
+             } else {
+                Node* targetInsert = head->getNext();       // Creates a TEMP node pointer set to the next along from head.
+                head->setNext(temp);                        // Re-organises pointers.
+                temp->setNext(targetInsert);                // Re-organises pointers.
+                targetInsert->setPrevious(temp);            // Re-organises pointers.
+                temp->setPrevious(head);                    // Re-organises pointers.
+                targetInsert = NULL;                        // Sets the temp pointer to NULL. 
             }
         } else if (temp != head) {
-            Node* targetInsert = temp;                       // Creates a TEMP node pointer set to current.
-            temp = temp->getPrevious();                   // Moves current to the previous node.
-            temp->setNext(targetInsert->getNext());          // Sets current next to skip deletion target.
-            temp = temp->getNext();                       // Moves current to the node past the deletion target.
-            temp->setPrevious(targetInsert->getPrevious());  // Sets current previous to skip deletion target.
-            
-            head->setPrevious(targetInsert);                    // Sets the old heads previous pointer from NULL to the new head.
-            targetInsert->setNext( head );                        // Sets the new heads next pointer to the old head.
-            head = targetInsert;                                  // Sets the head pointer to the new head.
-            head->setPrevious(NULL);                            // Sets the head previous to NULL.
+            Node* targetInsert = temp;                      // Creates a TEMP node pointer set to current.
+            temp = temp->getPrevious();                     // Moves current to the previous node.
+            temp->setNext(targetInsert->getNext());         // Sets current next to skip deletion target.
+            temp = temp->getNext();                         // Moves current to the node past the deletion target.
+            temp->setPrevious(targetInsert->getPrevious()); // Sets current previous to skip deletion target.
+        
+            head->setPrevious(targetInsert);                // Sets the old heads previous pointer from NULL to the new head.
+            targetInsert->setNext( head );                  // Sets the new heads next pointer to the old head.
+            head = targetInsert;                            // Sets the head pointer to the new head.
+            head->setPrevious(NULL);                        // Sets the head previous to NULL.
             targetInsert = NULL;                            // sets the temp noe pointer to null
-         }
-        sort = sort->getNext();
-        current = sort;
-        sizeInner--;
+            }
+        sort = sort->getNext();                             // Keeps track of where each itteration should start. 
+        current = sort;                                     // Updates the current pointer. 
+        size--;                                             // Decrements the size of the list left to sort. 
     } 
 }
 
