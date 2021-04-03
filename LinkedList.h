@@ -123,7 +123,7 @@ class LinkedList
 		Node* head;                                 // Private member variable that points to the head node
 		Node* tail;                                 // Private member variable that points to the tail node
 		Node* current;                              // Private member variable that points to the current node
-		int length;                           		// Private member variable to track the length of the list.
+		int length;									// Private member variable to track the length of the list.
 };
 /////////// MEMBER OPERATOR OVERLOAD ////////////
 // Precondition: A list containing data exists.
