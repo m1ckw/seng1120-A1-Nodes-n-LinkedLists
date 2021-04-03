@@ -80,9 +80,9 @@ int main()
 //  Uncomment this section if you are implementing the function order()	
 	cout << "Ordered lists by time of day: " << endl;
 	firstDay.order();
-//	secondDay.order();
+	secondDay.order();
 	cout << "List 1: " << firstDay  << endl;
-//	cout << "List 2: " << secondDay << endl << endl;
+	cout << "List 2: " << secondDay << endl << endl;
 
 	cout << "The program has finished." << endl;
 	return 0;

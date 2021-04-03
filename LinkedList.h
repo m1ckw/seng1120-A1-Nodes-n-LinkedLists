@@ -115,7 +115,7 @@ class LinkedList
 		double calcTotalWeight();
 		
 		// Precondition: A linked list with multipal nodes containg int time data exists.
-		// Postcondition: The linked list will be order based on arrival time from earliest to latest.
+		// Postcondition: The linked list will be ordered based on arrival time from latest to earliest.
 		void order();
 
 		/////////// MEMBER OPERATOR OVERLOAD ////////////
