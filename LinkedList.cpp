@@ -92,7 +92,7 @@ void LinkedList::addToCurrent(const dataType data) {        // Inserts a new nod
 
 LinkedList::dataType LinkedList::removeFromHead() {         // Removes the head node from the linked list.
 	dataType temp = head->getData();                        // Creates a temp node on the stack to store the head node data.
-	if (length == 0) {                                      // Returns temp if the list is empty. 
+    if (length == 0) {                                      // Returns temp if the list is empty. 
         return temp;
 	} else if (length == 1) {                               // Removes the head and sets all pointers to NULL if it's the only node.
         delete head;
@@ -113,7 +113,7 @@ LinkedList::dataType LinkedList::removeFromHead() {         // Removes the head 
 
 LinkedList::dataType LinkedList::removeFromTail() {         // Removes the tail node from the linked list.
     dataType temp = tail->getData();                        // Creates a temp node on the stack to store the tail node data.
-	if (length == 0) {                                      // Returns temp if the list is empty. 
+    if (length == 0) {                                      // Returns temp if the list is empty. 
         return temp;
     }else if (length == 1) {                                // Removes the tail and sets all pointers to NULL if it's the only node.
         delete tail;
@@ -133,7 +133,7 @@ LinkedList::dataType LinkedList::removeFromTail() {         // Removes the tail 
 
 LinkedList::dataType LinkedList::removeFromCurrent() {      // Removes the node current is pointing to.
     dataType temp = current->getData();                     // Creates a TEMP data storage for the data type.
-	if (length == 0) {                                      // Returns temp if the list is empty. 
+    if (length == 0) {                                      // Returns temp if the list is empty. 
         return temp;
     } else if (current == head) {                           // If the target is the head, invokes removeFromHead().
         removeFromHead();
@@ -141,11 +141,11 @@ LinkedList::dataType LinkedList::removeFromCurrent() {      // Removes the node 
         removeFromTail();
     } else {
         Node* targetDelete = current;                       // Creates a TEMP node pointer set to current.
-		current = current->getPrevious();                   // Moves current to the previous node.
-		current->setNext(targetDelete->getNext());          // Sets current next to skip deletion target.
-		current = current->getNext();                       // Moves current to the node past the deletion target.
-		current->setPrevious(targetDelete->getPrevious());  // Sets current previous to skip deletion target.
-		delete targetDelete;                                // Deletes target
+        current = current->getPrevious();                   // Moves current to the previous node.
+        current->setNext(targetDelete->getNext());          // Sets current next to skip deletion target.
+        current = current->getNext();                       // Moves current to the node past the deletion target.
+        current->setPrevious(targetDelete->getPrevious());  // Sets current previous to skip deletion target.
+        delete targetDelete;                                // Deletes target
         length--;                                           // Decrements list length
         targetDelete = NULL;                                // sets the temp noe pointer to null
     }
@@ -155,14 +155,14 @@ LinkedList::dataType LinkedList::removeFromCurrent() {      // Removes the node 
 void LinkedList::remove(string target) {                    // Removes target node based on strored data parameters.
 	start();
 	while (target != getCurrent().get_id())	                // Checks target against train ID. Note, snake_case is from Train class.
-		forward();                                          // Calls the forward() function to increment the pointer to the next node.
+        forward();                                          // Calls the forward() function to increment the pointer to the next node.
 	if (target == getCurrent().get_id()) {                  
-		removeFromCurrent();                                // Calls the removeFromCurrent() function if the IDs match.
+        removeFromCurrent();                                // Calls the removeFromCurrent() function if the IDs match.
 	} 
 }	
 
 void LinkedList::removeEarlier(int hour, int minute) {
-	current = head;                                         // Moves the current pointer to the head.
+    current = head;                                         // Moves the current pointer to the head.
     int currentSize = getSize();                            // CLocal variable to ensure the loop executes the required no. of times.
     for (int i = 0; i < currentSize; i++) {
         if (hour > getCurrent().get_time_hour()) {          // Selects any train with an hour less than 12. 
@@ -223,10 +223,10 @@ const int LinkedList::getSize() const {                     // Returns the lengt
 }
 
 double LinkedList::calcTotalWeight() {                      // Calculates the total weight of all trains in a list. 
-	current = head;                                         // Moves the current pointer to the head of the list.
+    current = head;                                         // Moves the current pointer to the head of the list.
     double sum = 0;                                         
 	for (int i=0; i < length; i++) {                        // For loop set to the length of the list.
-		sum = sum + getCurrent().get_weight();              // Summs the weights of each train on each iteration. 
+        sum = sum + getCurrent().get_weight();              // Summs the weights of each train on each iteration. 
         forward();
     } 
     return sum;
@@ -234,20 +234,20 @@ double LinkedList::calcTotalWeight() {                      // Calculates the to
 
 void LinkedList::operator+= (LinkedList& list2) {           // Overloads the += operator to concatenate two lists into one.
     list2.start();                                          // Moves the current pointer to the head of the list to be added.
-	int size = list2.getSize();                             // Stores the size of the list to be added in a local variable.
-	for (int i=0; i < size; i++) {                          // For loop set to the size of the list.
-		addToTail(list2.getCurrent());                      // Calls the addToTail function to add the data object one at a time.
-		list2.forward();                                    // Moves the current pointer to the next node in the list to be added.
-	}
+    int size = list2.getSize();                             // Stores the size of the list to be added in a local variable.
+    for (int i=0; i < size; i++) {                          // For loop set to the size of the list.
+        addToTail(list2.getCurrent());                      // Calls the addToTail function to add the data object one at a time.
+        list2.forward();                                    // Moves the current pointer to the next node in the list to be added.
+    }
 }
 
 
 ostream& operator << (ostream& output, LinkedList& list) {  // Overloads the Out Stream << operator to output the entire list.
     list.start();                                           // Moves the current pointer to the head of the list to be output.
-	int size = list.getSize();                              // Stores the size of the list to be output in a local variable.
-	for (int i=0; i < size; i++) {                          // For loop set to the size of the list.
-		output << list.getCurrent();                        // Outputs the current nodes data on each iteration. 
-		list.forward();                                     // Moves to the next node in the list ready to output the data.
+    int size = list.getSize();                              // Stores the size of the list to be output in a local variable.
+    for (int i=0; i < size; i++) {                          // For loop set to the size of the list.
+        output << list.getCurrent();                        // Outputs the current nodes data on each iteration. 
+        list.forward();                                     // Moves to the next node in the list ready to output the data.
     }
-	return output;                                          // Returns the output. 
+    return output;                                          // Returns the output. 
 }
