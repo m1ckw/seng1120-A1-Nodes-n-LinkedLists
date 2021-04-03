@@ -91,10 +91,10 @@ void LinkedList::addToCurrent(const dataType data) {        // Inserts a new nod
 }
 
 LinkedList::dataType LinkedList::removeFromHead() {         // Removes the head node from the linked list.
-	dataType temp = head->getData();                        // Creates a temp node on the stack to store the head node data.
+    dataType temp = head->getData();                        // Creates a temp node on the stack to store the head node data.
     if (length == 0) {                                      // Returns temp if the list is empty. 
         return temp;
-	} else if (length == 1) {                               // Removes the head and sets all pointers to NULL if it's the only node.
+    } else if (length == 1) {                               // Removes the head and sets all pointers to NULL if it's the only node.
         delete head;
         head = NULL;
         tail = NULL;
