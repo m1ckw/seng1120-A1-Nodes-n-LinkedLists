@@ -154,7 +154,7 @@ LinkedList::dataType LinkedList::removeFromCurrent() {      // Removes the node 
 
 void LinkedList::remove(string target) {                    // Removes target node based on strored data parameters.
 	start();
-	while (target != getCurrent().get_id())	                // Checks target against train ID. Note, snake_case is from Train class.
+	while (target != getCurrent().get_id())                 // Checks target against train ID. Note, snake_case is from Train class.
         forward();                                          // Calls the forward() function to increment the pointer to the next node.
 	if (target == getCurrent().get_id()) {                  
         removeFromCurrent();                                // Calls the removeFromCurrent() function if the IDs match.
